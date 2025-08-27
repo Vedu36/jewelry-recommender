@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumière Diamonds - Your Story, Your Forever</title>
+    <title>LumiÃ¨re Diamonds - Your Story, Your Forever</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -486,6 +486,32 @@
             box-shadow: 0 12px 25px rgba(40, 167, 69, 0.4);
         }
 
+        .ring-visualization {
+            background: radial-gradient(circle at center, #ffffff 0%, #f8f9fa 70%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ring-visualization::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 3s infinite;
+        }
+
         .hidden {
             display: none;
         }
@@ -560,6 +586,11 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
         }
 
         .fade-in {
@@ -1098,10 +1129,8 @@
                     ` : ''}
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                        <div>
-                            <img src="data:image/svg+xml,${encodeURIComponent(generateDiamondSVG(design))}" 
-                                 alt="${design.stone_type} ${design.stone_shape}" 
-                                 style="width: 100%; height: 120px; object-fit: contain; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 10px; padding: 10px;">
+                        <div class="ring-visualization">
+                            ${generateEnhancedDiamondSVG(design)}
                         </div>
                         <div class="design-details">
                             <div class="detail-row">
@@ -1124,7 +1153,7 @@
                     </div>
                     
                     <div class="style-tags">
-                        ${design.style_tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        ${design.style_tags ? design.style_tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
                     </div>
                     
                     <div style="background: rgba(250, 250, 250, 0.8); padding: 20px; border-radius: 15px; margin-bottom: 20px;">
@@ -1163,8 +1192,8 @@
                     </div>
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                        <div style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 10px; padding: 10px; min-height: 120px;">
-                            ${generateDiamondSVG(design)}
+                        <div class="ring-visualization">
+                            ${generateEnhancedDiamondSVG(design)}
                         </div>
                         <div class="design-details">
                             <div class="detail-row">
@@ -1191,7 +1220,7 @@
                     </div>
                     
                     <div class="style-tags">
-                        ${design.style_tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        ${design.style_tags ? design.style_tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
                     </div>
                     
                     <div style="background: rgba(250, 250, 250, 0.8); padding: 20px; border-radius: 15px; margin-bottom: 20px;">
@@ -1209,36 +1238,155 @@
             suggestionsSection.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function generateDiamondSVG(design) {
-                        const shapes = {
-                                round: `<circle cx="60" cy="60" r="35" fill="none" stroke="#d4af37" stroke-width="3"/>
-                                                <circle cx="60" cy="60" r="25" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
-                                                <circle cx="60" cy="60" r="15" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.4"/>`,
-                                princess: `<rect x="25" y="25" width="70" height="70" fill="none" stroke="#d4af37" stroke-width="3"/>
-                                                    <rect x="35" y="35" width="50" height="50" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>`,
-                                cushion: `<rect x="25" y="25" width="70" height="70" rx="15" ry="15" fill="none" stroke="#d4af37" stroke-width="3"/>
-                                                 <rect x="35" y="35" width="50" height="50" rx="10" ry="10" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>`,
-                                oval: `<ellipse cx="60" cy="60" rx="35" ry="25" fill="none" stroke="#d4af37" stroke-width="3"/>
-                                             <ellipse cx="60" cy="60" rx="25" ry="18" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>`,
-                                emerald: `<rect x="20" y="30" width="80" height="60" fill="none" stroke="#d4af37" stroke-width="3"/>
-                                                 <rect x="30" y="40" width="60" height="40" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>`
-                        };
+        function generateEnhancedDiamondSVG(design) {
+            const metalColors = {
+                'platinum': '#e5e4e2',
+                'white_gold': '#f8f8ff',
+                'yellow_gold': '#ffd700',
+                'rose_gold': '#e8b4a0'
+            };
 
-                                    const shape = shapes[design.stone_shape] || shapes.round;
-            
-                                    const svgString = `<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                                                                        <defs>
-                                                                            <radialGradient id="sparkle-${design.id}" cx="50%" cy="30%">
-                                                                                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
-                                                                                <stop offset="100%" stop-color="#d4af37" stop-opacity="0.2"/>
-                                                                            </radialGradient>
-                                                                        </defs>
-                                                                        ${shape}
-                                                                        <circle cx="50" cy="40" r="3" fill="url(#sparkle-${design.id})"/>
-                                                                        <circle cx="70" cy="50" r="2" fill="url(#sparkle-${design.id})"/>
-                                                                        <circle cx="55" cy="65" r="1.5" fill="url(#sparkle-${design.id})"/>
-                                                                    </svg>`;
-            return svgString;
+            const metalColor = metalColors[design.metal_type] || '#e5e4e2';
+            const uniqueId = Math.random().toString(36).substr(2, 9);
+
+            const shapes = {
+                round: `
+                    <!-- Ring band -->
+                    <ellipse cx="60" cy="85" rx="50" ry="8" fill="${metalColor}" stroke="#999" stroke-width="1"/>
+                    <ellipse cx="60" cy="82" rx="45" ry="6" fill="${metalColor}" opacity="0.8"/>
+                    
+                    <!-- Center diamond -->
+                    <circle cx="60" cy="50" r="20" fill="url(#diamondGrad-${uniqueId})" stroke="#d4af37" stroke-width="2"/>
+                    <circle cx="60" cy="50" r="15" fill="none" stroke="url(#sparkleGrad-${uniqueId})" stroke-width="1" opacity="0.8"/>
+                    <circle cx="60" cy="50" r="8" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+                    
+                    <!-- Sparkles -->
+                    <circle cx="50" cy="40" r="2" fill="#ffffff" opacity="0.9"/>
+                    <circle cx="70" cy="45" r="1.5" fill="#ffffff" opacity="0.7"/>
+                    <circle cx="55" cy="60" r="1" fill="#ffffff" opacity="0.8"/>
+                `,
+                princess: `
+                    <!-- Ring band -->
+                    <ellipse cx="60" cy="85" rx="50" ry="8" fill="${metalColor}" stroke="#999" stroke-width="1"/>
+                    <ellipse cx="60" cy="82" rx="45" ry="6" fill="${metalColor}" opacity="0.8"/>
+                    
+                    <!-- Center diamond -->
+                    <rect x="40" y="30" width="40" height="40" fill="url(#diamondGrad-${uniqueId})" stroke="#d4af37" stroke-width="2"/>
+                    <rect x="45" y="35" width="30" height="30" fill="none" stroke="url(#sparkleGrad-${uniqueId})" stroke-width="1" opacity="0.8"/>
+                    <rect x="50" y="40" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+                    
+                    <!-- Sparkles -->
+                    <circle cx="50" cy="40" r="2" fill="#ffffff" opacity="0.9"/>
+                    <circle cx="70" cy="45" r="1.5" fill="#ffffff" opacity="0.7"/>
+                    <circle cx="55" cy="60" r="1" fill="#ffffff" opacity="0.8"/>
+                `,
+                cushion: `
+                    <!-- Ring band -->
+                    <ellipse cx="60" cy="85" rx="50" ry="8" fill="${metalColor}" stroke="#999" stroke-width="1"/>
+                    <ellipse cx="60" cy="82" rx="45" ry="6" fill="${metalColor}" opacity="0.8"/>
+                    
+                    <!-- Center diamond -->
+                    <rect x="40" y="30" width="40" height="40" rx="8" ry="8" fill="url(#diamondGrad-${uniqueId})" stroke="#d4af37" stroke-width="2"/>
+                    <rect x="45" y="35" width="30" height="30" rx="6" ry="6" fill="none" stroke="url(#sparkleGrad-${uniqueId})" stroke-width="1" opacity="0.8"/>
+                    <rect x="50" y="40" width="20" height="20" rx="4" ry="4" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+                    
+                    <!-- Sparkles -->
+                    <circle cx="50" cy="40" r="2" fill="#ffffff" opacity="0.9"/>
+                    <circle cx="70" cy="45" r="1.5" fill="#ffffff" opacity="0.7"/>
+                    <circle cx="55" cy="60" r="1" fill="#ffffff" opacity="0.8"/>
+                `,
+                oval: `
+                    <!-- Ring band -->
+                    <ellipse cx="60" cy="85" rx="50" ry="8" fill="${metalColor}" stroke="#999" stroke-width="1"/>
+                    <ellipse cx="60" cy="82" rx="45" ry="6" fill="${metalColor}" opacity="0.8"/>
+                    
+                    <!-- Center diamond -->
+                    <ellipse cx="60" cy="50" rx="22" ry="18" fill="url(#diamondGrad-${uniqueId})" stroke="#d4af37" stroke-width="2"/>
+                    <ellipse cx="60" cy="50" rx="16" ry="13" fill="none" stroke="url(#sparkleGrad-${uniqueId})" stroke-width="1" opacity="0.8"/>
+                    <ellipse cx="60" cy="50" rx="10" ry="8" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+                    
+                    <!-- Sparkles -->
+                    <circle cx="50" cy="40" r="2" fill="#ffffff" opacity="0.9"/>
+                    <circle cx="70" cy="45" r="1.5" fill="#ffffff" opacity="0.7"/>
+                    <circle cx="55" cy="60" r="1" fill="#ffffff" opacity="0.8"/>
+                `,
+                emerald: `
+                    <!-- Ring band -->
+                    <ellipse cx="60" cy="85" rx="50" ry="8" fill="${metalColor}" stroke="#999" stroke-width="1"/>
+                    <ellipse cx="60" cy="82" rx="45" ry="6" fill="${metalColor}" opacity="0.8"/>
+                    
+                    <!-- Center diamond -->
+                    <rect x="35" y="35" width="50" height="30" fill="url(#diamondGrad-${uniqueId})" stroke="#d4af37" stroke-width="2"/>
+                    <rect x="40" y="40" width="40" height="20" fill="none" stroke="url(#sparkleGrad-${uniqueId})" stroke-width="1" opacity="0.8"/>
+                    <rect x="45" y="43" width="30" height="14" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+                    
+                    <!-- Sparkles -->
+                    <circle cx="50" cy="40" r="2" fill="#ffffff" opacity="0.9"/>
+                    <circle cx="70" cy="45" r="1.5" fill="#ffffff" opacity="0.7"/>
+                    <circle cx="55" cy="55" r="1" fill="#ffffff" opacity="0.8"/>
+                `,
+                pear: `
+                    <!-- Ring band -->
+                    <ellipse cx="60" cy="85" rx="50" ry="8" fill="${metalColor}" stroke="#999" stroke-width="1"/>
+                    <ellipse cx="60" cy="82" rx="45" ry="6" fill="${metalColor}" opacity="0.8"/>
+                    
+                    <!-- Center diamond -->
+                    <path d="M 60 30 C 75 35, 75 55, 60 70 C 45 55, 45 35, 60 30 Z" fill="url(#diamondGrad-${uniqueId})" stroke="#d4af37" stroke-width="2"/>
+                    <path d="M 60 35 C 70 40, 70 55, 60 65 C 50 55, 50 40, 60 35 Z" fill="none" stroke="url(#sparkleGrad-${uniqueId})" stroke-width="1" opacity="0.8"/>
+                    
+                    <!-- Sparkles -->
+                    <circle cx="55" cy="40" r="2" fill="#ffffff" opacity="0.9"/>
+                    <circle cx="65" cy="50" r="1.5" fill="#ffffff" opacity="0.7"/>
+                    <circle cx="60" cy="55" r="1" fill="#ffffff" opacity="0.8"/>
+                `,
+                marquise: `
+                    <!-- Ring band -->
+                    <ellipse cx="60" cy="85" rx="50" ry="8" fill="${metalColor}" stroke="#999" stroke-width="1"/>
+                    <ellipse cx="60" cy="82" rx="45" ry="6" fill="${metalColor}" opacity="0.8"/>
+                    
+                    <!-- Center diamond -->
+                    <path d="M 40 50 C 45 30, 75 30, 80 50 C 75 70, 45 70, 40 50 Z" fill="url(#diamondGrad-${uniqueId})" stroke="#d4af37" stroke-width="2"/>
+                    <path d="M 45 50 C 48 38, 72 38, 75 50 C 72 62, 48 62, 45 50 Z" fill="none" stroke="url(#sparkleGrad-${uniqueId})" stroke-width="1" opacity="0.8"/>
+                    
+                    <!-- Sparkles -->
+                    <circle cx="50" cy="45" r="2" fill="#ffffff" opacity="0.9"/>
+                    <circle cx="70" cy="50" r="1.5" fill="#ffffff" opacity="0.7"/>
+                    <circle cx="55" cy="55" r="1" fill="#ffffff" opacity="0.8"/>
+                `,
+                heart: `
+                    <!-- Ring band -->
+                    <ellipse cx="60" cy="85" rx="50" ry="8" fill="${metalColor}" stroke="#999" stroke-width="1"/>
+                    <ellipse cx="60" cy="82" rx="45" ry="6" fill="${metalColor}" opacity="0.8"/>
+                    
+                    <!-- Center diamond -->
+                    <path d="M 60 65 C 45 50, 45 35, 52 35 C 56 35, 60 40, 60 40 C 60 40, 64 35, 68 35 C 75 35, 75 50, 60 65 Z" fill="url(#diamondGrad-${uniqueId})" stroke="#d4af37" stroke-width="2"/>
+                    
+                    <!-- Sparkles -->
+                    <circle cx="55" cy="45" r="2" fill="#ffffff" opacity="0.9"/>
+                    <circle cx="65" cy="45" r="1.5" fill="#ffffff" opacity="0.7"/>
+                    <circle cx="60" cy="55" r="1" fill="#ffffff" opacity="0.8"/>
+                `
+            };
+
+            const shape = shapes[design.stone_shape] || shapes.round;
+
+            return `
+                <svg width="120" height="100" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="diamondGrad-${uniqueId}" cx="40%" cy="30%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+                            <stop offset="50%" stop-color="#f8f9ff" stop-opacity="0.7"/>
+                            <stop offset="100%" stop-color="#e1e5f0" stop-opacity="0.5"/>
+                        </radialGradient>
+                        <linearGradient id="sparkleGrad-${uniqueId}" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+                            <stop offset="50%" stop-color="#d4af37" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.4"/>
+                        </linearGradient>
+                    </defs>
+                    ${shape}
+                </svg>
+            `;
         }
 
         async function addToShortlist(designId) {
@@ -1332,4 +1480,3 @@
     </script>
 </body>
 </html>
-<!-- Dazzlez  -->
