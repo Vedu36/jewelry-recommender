@@ -1,0 +1,383 @@
+{
+  "jewelry_database": {
+    "stones": {
+      "diamond": {
+        "price_per_carat": 5000,
+        "colors": ["colorless", "yellow", "brown", "blue", "pink", "green"],
+        "clarity_grades": ["FL", "IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2"],
+        "hardness": 10,
+        "description": "The hardest natural substance, known for exceptional brilliance and fire"
+      },
+      "ruby": {
+        "price_per_carat": 3000,
+        "colors": ["red", "pinkish-red", "purplish-red"],
+        "clarity_grades": ["eye-clean", "slightly included", "included"],
+        "hardness": 9,
+        "description": "The king of colored gemstones, prized for its vibrant red color"
+      },
+      "sapphire": {
+        "price_per_carat": 2500,
+        "colors": ["blue", "pink", "yellow", "white", "padparadscha", "purple"],
+        "clarity_grades": ["eye-clean", "slightly included", "included"],
+        "hardness": 9,
+        "description": "Ruby's sister stone, available in every color except red"
+      },
+      "emerald": {
+        "price_per_carat": 4000,
+        "colors": ["green", "bluish-green", "yellowish-green"],
+        "clarity_grades": ["eye-clean", "slightly included", "moderately included", "heavily included"],
+        "hardness": 7.5,
+        "description": "Known for its vivid green color and natural inclusions called 'jardin'"
+      },
+      "amethyst": {
+        "price_per_carat": 200,
+        "colors": ["purple", "lavender", "deep purple", "reddish-purple"],
+        "clarity_grades": ["eye-clean", "slightly included"],
+        "hardness": 7,
+        "description": "The most prized variety of quartz, ranging from pale lavender to deep purple"
+      },
+      "aquamarine": {
+        "price_per_carat": 800,
+        "colors": ["blue", "light blue", "sea blue", "blue-green"],
+        "clarity_grades": ["eye-clean", "slightly included"],
+        "hardness": 7.5,
+        "description": "Named after seawater, known for its clear blue color and excellent clarity"
+      },
+      "citrine": {
+        "price_per_carat": 100,
+        "colors": ["yellow", "orange", "brown", "golden"],
+        "clarity_grades": ["eye-clean", "slightly included"],
+        "hardness": 7,
+        "description": "The golden variety of quartz, often used as an affordable diamond alternative"
+      },
+      "peridot": {
+        "price_per_carat": 300,
+        "colors": ["green", "yellowish-green", "olive green"],
+        "clarity_grades": ["eye-clean", "slightly included"],
+        "hardness": 6.5,
+        "description": "One of the few gemstones that occurs in only one color - green"
+      }
+    },
+    "metals": {
+      "platinum": {
+        "price_per_gram": 35,
+        "durability": "excellent",
+        "hypoallergenic": true,
+        "description": "The most precious and durable metal for jewelry"
+      },
+      "gold_18k": {
+        "price_per_gram": 60,
+        "durability": "very good",
+        "hypoallergenic": false,
+        "description": "75% pure gold, perfect balance of purity and durability"
+      },
+      "gold_14k": {
+        "price_per_gram": 45,
+        "durability": "good",
+        "hypoallergenic": false,
+        "description": "58% pure gold, most popular choice for engagement rings"
+      },
+      "white_gold": {
+        "price_per_gram": 55,
+        "durability": "very good",
+        "hypoallergenic": false,
+        "description": "Gold alloyed with white metals, often rhodium plated"
+      },
+      "rose_gold": {
+        "price_per_gram": 50,
+        "durability": "good",
+        "hypoallergenic": false,
+        "description": "Gold alloyed with copper, creating a romantic pinkish hue"
+      },
+      "silver": {
+        "price_per_gram": 1,
+        "durability": "fair",
+        "hypoallergenic": false,
+        "description": "Traditional precious metal, requires regular maintenance"
+      },
+      "palladium": {
+        "price_per_gram": 25,
+        "durability": "excellent",
+        "hypoallergenic": true,
+        "description": "Platinum family metal, lightweight and naturally white"
+      }
+    },
+    "shapes": {
+      "round": {
+        "description": "The most popular and brilliant cut",
+        "brilliance": "excellent",
+        "price_premium": 1.0
+      },
+      "princess": {
+        "description": "Square shape with pointed corners",
+        "brilliance": "very good",
+        "price_premium": 0.85
+      },
+      "cushion": {
+        "description": "Square with rounded corners, vintage appeal",
+        "brilliance": "good",
+        "price_premium": 0.80
+      },
+      "emerald": {
+        "description": "Rectangular with step cuts, elegant and classic",
+        "brilliance": "moderate",
+        "price_premium": 0.75
+      },
+      "oval": {
+        "description": "Elongated round, makes fingers appear longer",
+        "brilliance": "excellent",
+        "price_premium": 0.90
+      },
+      "marquise": {
+        "description": "Football-shaped, maximizes carat weight",
+        "brilliance": "good",
+        "price_premium": 0.70
+      },
+      "pear": {
+        "description": "Teardrop shape, elegant and unique",
+        "brilliance": "good",
+        "price_premium": 0.75
+      },
+      "asscher": {
+        "description": "Square emerald cut, art deco style",
+        "brilliance": "moderate",
+        "price_premium": 0.80
+      },
+      "radiant": {
+        "description": "Rectangular with brilliant facets",
+        "brilliance": "very good",
+        "price_premium": 0.85
+      },
+      "heart": {
+        "description": "Ultimate symbol of love",
+        "brilliance": "good",
+        "price_premium": 0.75
+      }
+    },
+    "settings": {
+      "prong": {
+        "description": "Classic setting with metal claws holding the stone",
+        "security": "good",
+        "light_exposure": "maximum",
+        "price_multiplier": 1.0
+      },
+      "bezel": {
+        "description": "Metal rim surrounds the stone completely",
+        "security": "excellent",
+        "light_exposure": "good",
+        "price_multiplier": 1.2
+      },
+      "channel": {
+        "description": "Stones set in a groove between two metal walls",
+        "security": "excellent",
+        "light_exposure": "good",
+        "price_multiplier": 1.3
+      },
+      "pave": {
+        "description": "Small stones set close together with tiny prongs",
+        "security": "moderate",
+        "light_exposure": "excellent",
+        "price_multiplier": 1.5
+      },
+      "halo": {
+        "description": "Center stone surrounded by smaller stones",
+        "security": "good",
+        "light_exposure": "excellent",
+        "price_multiplier": 1.4
+      },
+      "vintage": {
+        "description": "Ornate setting with milgrain and filigree details",
+        "security": "good",
+        "light_exposure": "good",
+        "price_multiplier": 1.3
+      },
+      "tension": {
+        "description": "Stone held in place by metal tension",
+        "security": "moderate",
+        "light_exposure": "maximum",
+        "price_multiplier": 1.6
+      }
+    },
+    "ring_types": {
+      "engagement": {
+        "description": "Traditional proposal ring, typically featuring a center stone",
+        "typical_budget_range": [2000, 15000],
+        "popular_stones": ["diamond", "sapphire", "ruby", "emerald"]
+      },
+      "wedding": {
+        "description": "Band worn during and after the wedding ceremony",
+        "typical_budget_range": [500, 3000],
+        "popular_stones": ["diamond", "none"]
+      },
+      "cocktail": {
+        "description": "Bold statement ring for special occasions",
+        "typical_budget_range": [1000, 8000],
+        "popular_stones": ["emerald", "sapphire", "ruby", "amethyst"]
+      },
+      "eternity": {
+        "description": "Band with stones going all the way around",
+        "typical_budget_range": [1500, 10000],
+        "popular_stones": ["diamond", "sapphire"]
+      },
+      "solitaire": {
+        "description": "Single stone in a simple setting",
+        "typical_budget_range": [1000, 20000],
+        "popular_stones": ["diamond", "ruby", "sapphire", "emerald"]
+      },
+      "halo": {
+        "description": "Center stone surrounded by smaller accent stones",
+        "typical_budget_range": [2000, 12000],
+        "popular_stones": ["diamond", "sapphire", "ruby"]
+      },
+      "vintage": {
+        "description": "Inspired by antique jewelry designs",
+        "typical_budget_range": [1500, 10000],
+        "popular_stones": ["diamond", "ruby", "sapphire", "emerald"]
+      },
+      "modern": {
+        "description": "Contemporary design with clean lines",
+        "typical_budget_range": [1000, 15000],
+        "popular_stones": ["diamond", "aquamarine", "citrine"]
+      }
+    },
+    "style_preferences": {
+      "vintage": {
+        "description": "Inspired by bygone eras with intricate details",
+        "characteristics": ["milgrain", "filigree", "ornate", "antique"],
+        "popular_settings": ["vintage", "halo", "bezel"],
+        "popular_shapes": ["cushion", "emerald", "asscher", "oval"]
+      },
+      "modern": {
+        "description": "Clean, contemporary designs",
+        "characteristics": ["minimalist", "geometric", "sleek", "contemporary"],
+        "popular_settings": ["prong", "bezel", "tension"],
+        "popular_shapes": ["round", "princess", "emerald"]
+      },
+      "classic": {
+        "description": "Timeless designs that never go out of style",
+        "characteristics": ["traditional", "elegant", "refined", "sophisticated"],
+        "popular_settings": ["prong", "halo", "vintage"],
+        "popular_shapes": ["round", "oval", "cushion"]
+      },
+      "glamorous": {
+        "description": "Bold and eye-catching designs",
+        "characteristics": ["statement", "sparkly", "dramatic", "luxurious"],
+        "popular_settings": ["halo", "pave", "channel"],
+        "popular_shapes": ["round", "cushion", "oval"]
+      },
+      "minimalist": {
+        "description": "Simple, understated elegance",
+        "characteristics": ["clean", "simple", "subtle", "refined"],
+        "popular_settings": ["prong", "bezel", "tension"],
+        "popular_shapes": ["round", "princess", "emerald"]
+      }
+    },
+    "occasions": {
+      "engagement": {
+        "description": "Proposal and engagement celebration",
+        "typical_styles": ["classic", "vintage", "glamorous"],
+        "budget_considerations": "Often 2-3 months salary traditionally"
+      },
+      "anniversary": {
+        "description": "Celebrating years together",
+        "typical_styles": ["classic", "vintage", "modern"],
+        "budget_considerations": "Varies widely based on milestone"
+      },
+      "birthday": {
+        "description": "Personal celebration gift",
+        "typical_styles": ["modern", "glamorous", "minimalist"],
+        "budget_considerations": "Personal preference and relationship"
+      },
+      "graduation": {
+        "description": "Academic achievement celebration",
+        "typical_styles": ["modern", "minimalist", "classic"],
+        "budget_considerations": "Often more modest, symbolic value"
+      },
+      "promotion": {
+        "description": "Career milestone reward",
+        "typical_styles": ["modern", "glamorous", "classic"],
+        "budget_considerations": "Self-purchase, varies by income level"
+      }
+    }
+  },
+  "sample_designs": [
+    {
+      "id": "classic_solitaire_001",
+      "name": "Timeless Solitaire",
+      "stone_type": "diamond",
+      "stone_shape": "round",
+      "stone_color": "colorless",
+      "stone_clarity": "VS1",
+      "carat_weight": 1.0,
+      "metal_type": "platinum",
+      "setting_type": "prong",
+      "style_tags": ["classic", "timeless", "elegant"],
+      "estimated_price": 8500.00,
+      "description": "A perfect round diamond in a classic six-prong platinum setting"
+    },
+    {
+      "id": "vintage_halo_002",
+      "name": "Art Deco Halo",
+      "stone_type": "sapphire",
+      "stone_shape": "cushion",
+      "stone_color": "blue",
+      "stone_clarity": "eye-clean",
+      "carat_weight": 1.5,
+      "metal_type": "white_gold",
+      "setting_type": "halo",
+      "style_tags": ["vintage", "art deco", "glamorous"],
+      "estimated_price": 6750.00,
+      "description": "A stunning blue sapphire surrounded by diamonds in vintage-inspired setting"
+    },
+    {
+      "id": "modern_emerald_003",
+      "name": "Contemporary Emerald",
+      "stone_type": "emerald",
+      "stone_shape": "emerald",
+      "stone_color": "green",
+      "stone_clarity": "slightly included",
+      "carat_weight": 2.0,
+      "metal_type": "rose_gold",
+      "setting_type": "bezel",
+      "style_tags": ["modern", "bold", "unique"],
+      "estimated_price": 12400.00,
+      "description": "A striking emerald-cut emerald in a modern rose gold bezel setting"
+    }
+  ],
+  "price_factors": {
+    "stone_quality_multipliers": {
+      "FL": 2.0,
+      "IF": 1.8,
+      "VVS1": 1.6,
+      "VVS2": 1.4,
+      "VS1": 1.2,
+      "VS2": 1.0,
+      "SI1": 0.8,
+      "SI2": 0.6,
+      "eye-clean": 1.0,
+      "slightly included": 0.8,
+      "moderately included": 0.6,
+      "heavily included": 0.4
+    },
+    "color_multipliers": {
+      "colorless": 1.2,
+      "near_colorless": 1.0,
+      "faint_yellow": 0.8,
+      "light_yellow": 0.6,
+      "red": 1.5,
+      "blue": 1.3,
+      "green": 1.4,
+      "pink": 1.6,
+      "yellow": 1.1,
+      "purple": 1.2
+    },
+    "size_premiums": {
+      "0.5": 1.0,
+      "1.0": 1.2,
+      "1.5": 1.4,
+      "2.0": 1.7,
+      "2.5": 2.0,
+      "3.0": 2.5
+    }
+  }
+}
