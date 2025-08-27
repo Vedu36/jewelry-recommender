@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière Diamonds - Your Story, Your Forever</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --diamond-white: #fafafa;
+            --platinum: #e5e4e2;
+            --gold: #d4af37;
+            --rose-gold: #e8b4a0;
+            --deep-blue: #1a237e;
+            --midnight: #0f0f23;
+            --crystal: rgba(255, 255, 255, 0.1);
+            --shadow-luxury: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, 
+                #0f0f23 0%, 
+                #1a237e 25%, 
+                #283593 50%, 
+                #3949ab 75%, 
+                #5c6bc0 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .luxury-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #fff, var(--gold), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .header .tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.7;
+        }
+
+        .story-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-luxury);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--deep-blue);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .story-form {
+            display: grid;
+            gap: 30px;
+        }
+
+        .story-group {
+            background: rgba(250, 250, 250, 0.8);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .story-group h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 500;
+            color: var(--deep-blue);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        input, select, textarea {
+            padding: 15px 20px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            font-family: 'Inter', sans-serif;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .story-inspiration {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(232, 180, 160, 0.1));
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .story-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .story-example {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #555;
+            border-left: 4px solid var(--gold);
+        }
+
+        .preferences-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .input-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: var(--shadow-luxury);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn {
+            padding: 18px 35px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, #b8860b 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-story {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, #3949ab 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(26, 35, 126, 0.3);
+        }
+
+        .btn-story:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(26, 35, 126, 0.4);
+        }
+
+        .image-upload {
+            border: 3px dashed rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(250, 250, 250, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-upload::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 49%, rgba(212, 175, 55, 0.1) 50%, transparent 51%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-upload:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .image-upload:hover::before {
+            opacity: 1;
+        }
+
+        .upload-icon {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .suggestions-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: var(--shadow-luxury);
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 35px;
+            margin-top: 35px;
+        }
+
+        .design-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 250, 250, 0.9) 100%);
+            border-radius: 20px;
+            padding: 35px;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .design-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--gold), var(--rose-gold), var(--gold));
+        }
+
+        .design-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.2);
+        }
+
+        .design-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .design-id {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .design-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold), #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .story-connection {
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.1), rgba(57, 73, 171, 0.1));
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--deep-blue);
+        }
+
+        .story-connection h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-blue);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .story-connection p {
+            font-size: 0.95rem;
+            color: #555;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .design-details {
+            margin-bottom: 20px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            align-items: center;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: var(--deep-blue);
+        }
+
+        .detail-value {
+            color: #333;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .style-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--gold), #b8860b);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-shortlist {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-shortlist:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: white;
+        }
+
+        .loading i {
+            font-size: 3rem;
+            animation: spin 1s linear infinite;
+            background: linear-gradient(135deg, var(--gold), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .notification {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateX(400px);
+            transition: transform 0.4s ease;
+            z-index: 1000;
+            font-weight: 500;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .error {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+        }
+
+        @media (max-width: 1024px) {
+            .preferences-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .suggestions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .story-section, .input-section {
+                padding: 25px;
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="luxury-pattern"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="sparkle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="sparkle" style="top: 30%; right: 15%; animation-delay: 0.5s;"></div>
+            <div class="sparkle" style="bottom: 20%; left: 20%; animation-delay: 1s;"></div>
+            <div class="sparkle" style="bottom: 30%; right: 25%; animation-delay: 1.5s;"></div>
+            
+            <h1><i class="fas fa-gem"></i>Dazzlez</h1>
+            <p class="subtitle">Crafting Forever Through AI & Artistry</p>
+            <p class="tagline">"Every diamond tells a story. What's yours?"</p>
+        </div>
+
+        <!-- Story Collection Section -->
+        <div class="story-section">
+            <h2 class="section-title">
+                <i class="fas fa-heart"></i>
+                Tell Us Your Story
+            </h2>
+            
+            <div class="story-inspiration">
+                <p><strong>Your love story deserves a diamond as unique as your journey.</strong> Share the moments, feelings, and dreams that define your relationship. Our AI will weave these details into personalized recommendations that capture the essence of your bond.</p>
+                
+                <div class="story-examples">
+                    <div class="story-example">
+                        "We met during a sunset walk on the beach. She loves vintage things and has a collection of antique books..."
+                    </div>
+                    <div class="story-example">
+                        "He proposed during our favorite hiking trail where we had our first date. We're both minimalists who appreciate clean, modern design..."
+                    </div>
+                    <div class="story-example">
+                        "She's an artist with incredibly expressive hands. I want something that complements her creative spirit and bohemian style..."
+                    </div>
+                </div>
+            </div>
+
+            <form id="storyForm" class="story-form">
+                <div class="story-group">
+                    <h3><i class="fas fa-users"></i> Your Love Story</h3>
+                    <div class="form-group">
+                        <label for="loveStory">Tell us about your relationship - how you met, special moments, what makes your bond unique</label>
+                        <textarea id="loveStory" name="love_story" placeholder="We met at a coffee shop where she was reading Neruda. Our first date was..."></textarea>
+                    </div>
+                </div>
+
+                <div class="story-group">
+                    <h3><i class="fas fa-star"></i> Their Personality & Style</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="personality">Describe their personality</label>
+                            <textarea id="personality" name="personality" placeholder="Adventurous, artistic, loves nature, has a vintage soul..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="stylePrefs">Their fashion & style preferences</label>
+                            <textarea id="stylePrefs" name="style_preferences" placeholder="Minimalist jewelry, loves rose gold, prefers vintage pieces, bohemian style..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-group">
+                    <h3><i class="fas fa-calendar-heart"></i> The Occasion</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="occasion">What's the occasion?</label>
+                            <select id="occasion" name="occasion">
+                                <option value="">Select occasion</option>
+                                <option value="engagement">Engagement Proposal</option>
+                                <option value="anniversary">Anniversary Celebration</option>
+                                <option value="birthday">Birthday Surprise</option>
+                                <option value="valentine">Valentine's Day</option>
+                                <option value="just_because">Just Because</option>
+                                <option value="milestone">Life Milestone</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeline">When do you need this?</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select timeline</option>
+                                <option value="asap">Within 2 weeks</option>
+                                <option value="month">Within a month</option>
+                                <option value="flexible">I have time to plan</option>
+                                <option value="special_date">For a specific date</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialMoments">Any special moments or memories you'd like reflected in the design?</label>
+                        <textarea id="specialMoments" name="special_moments" placeholder="The way she tilts her head when she laughs, her favorite flower, the place we got engaged..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-story" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-magic"></i>
+                    Create My Story-Inspired Recommendations
+                </button>
+            </form>
+        </div>
+
+        <div class="preferences-section">
+            <!-- Traditional Preferences -->
+            <div class="input-section">
+                <h2 class="section-title">
+                    <i class="fas fa-sliders-h"></i>
+                    Design Preferences
+                </h2>
+                <form id="preferencesForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="ringType">Ring Style</label>
+                            <select id="ringType" name="ring_type">
+                                <option value="">Select style</option>
+                                <option value="engagement">Engagement Ring</option>
+                                <option value="wedding">Wedding Band</option>
+                                <option value="eternity">Eternity Band</option>
+                                <option value="cocktail">Statement Ring</option>
+                                <option value="solitaire">Classic Solitaire</option>
+                                <option value="halo">Halo Setting</option>
+                                <option value="vintage">Vintage Inspired</option>
+                                <option value="modern">Contemporary</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="centerStone">Center Stone</label>
+                            <select id="centerStone" name="center_stone">
+                                <option value="">Select stone</option>
+                                <option value="diamond">Diamond</option>
+                                <option value="ruby">Ruby</option>
+                                <option value="sapphire">Sapphire</option>
+                                <option value="emerald">Emerald</option>
+                                <option value="alternative">Alternative Stone</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="metalType">Metal Preference</label>
+                            <select id="metalType" name="metal_type">
+                                <option value="">Select metal</option>
+                                <option value="platinum">Platinum</option>
+                                <option value="white_gold">White Gold</option>
+                                <option value="yellow_gold">Yellow Gold</option>
+                                <option value="rose_gold">Rose Gold</option>
+                                <option value="mixed_metals">Mixed Metals</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budgetRange">Investment Range</label>
+                            <select id="budgetRange" name="budget_range">
+                                <option value="">Select range</option>
+                                <option value="5000-10000">$5,000 - $10,000</option>
+                                <option value="10000-20000">$10,000 - $20,000</option>
+                                <option value="20000-50000">$20,000 - $50,000</option>
+                                <option value="50000-100000">$50,000 - $100,000</option>
+                                <option value="100000+">$100,000+</option>
+                                <option value="consultation">Let's Discuss</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="inspiration">Additional Design Inspiration</label>
+                            <textarea id="inspiration" name="design_inspiration" placeholder="Art deco patterns, nature themes, geometric shapes, family heirloom elements..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 25px;">
+                        <i class="fas fa-gem"></i>
+                        Generate Premium Recommendations
+                    </button>
+                </form>
+            </div>
+
+            <!-- Image Upload Section -->
+            <div class="input-section">
+                <h2 class="section-title">
+                    <i class="fas fa-camera"></i>
+                    Visual Inspiration
+                </h2>
+                <div class="image-upload" id="imageUpload">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <div class="upload-text">
+                        <strong>Share Your Visual Inspiration</strong>
+                        <br>
+                        <small>Upload jewelry photos, Pinterest boards, or any visual references</small>
+                    </div>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;" multiple>
+                </div>
+                
+                <div id="imagePreview" class="hidden" style="margin-top: 20px;">
+                    <div id="previewContainer"></div>
+                    <p style="text-align: center; color: #666; margin-top: 15px;">Images uploaded successfully!</p>
+                </div>
+
+                <button type="button" id="analyzeImageBtn" class="btn btn-primary hidden" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-search"></i>
+                    Analyze Visual Inspiration
+                </button>
+
+                <div style="margin-top: 30px; padding-top: 25px; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+                    <h3 style="color: var(--deep-blue); margin-bottom: 15px; font-family: 'Playfair Display', serif;">
+                        <i class="fas fa-phone"></i> Prefer Personal Consultation?
+                    </h3>
+                    <p style="color: #666; margin-bottom: 20px;">
+                        Speak with our diamond specialists for a truly personalized experience.
+                    </p>
+                    <button class="btn btn-story" style="width: 100%;">
+                        <i class="fas fa-calendar"></i>
+                        Schedule Private Consultation
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suggestions Section -->
+        <div class="suggestions-section hidden" id="suggestionsSection">
+            <h2 class="section-title">
+                <i class="fas fa-sparkles"></i>
+                Your Personalized Collection
+            </h2>
+            <div id="suggestionsMessage" class="fade-in"></div>
+            <div class="suggestions-grid" id="suggestionsGrid"></div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="loading hidden" id="loadingIndicator">
+            <i class="fas fa-spinner"></i>
+            <p>Crafting your perfect diamond story...</p>
+            <small>Analyzing your preferences and story details</small>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        let currentSessionId = null;
+        let userStory = {};
+
+        // DOM Elements
+        const storyForm = document.getElementById('storyForm');
+        const preferencesForm = document.getElementById('preferencesForm');
+        const imageUpload = document.getElementById('imageUpload');
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewContainer = document.getElementById('previewContainer');
+        const analyzeImageBtn = document.getElementById('analyzeImageBtn');
+        const suggestionsSection = document.getElementById('suggestionsSection');
+        const suggestionsGrid = document.getElementById('suggestionsGrid');
+        const suggestionsMessage = document.getElementById('suggestionsMessage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const notification = document.getElementById('notification');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            addSparkleAnimation();
+        });
+
+        function setupEventListeners() {
+            // Story form submission
+            storyForm.addEventListener('submit', handleStorySubmit);
+            
+            // Preferences form submission
+            preferencesForm.addEventListener('submit', handlePreferencesSubmit);
+
+            // Image upload
+            imageUpload.addEventListener('click', () => imageInput.click());
+            imageUpload.addEventListener('dragover', handleDragOver);
+            imageUpload.addEventListener('drop', handleDrop);
+            imageInput.addEventListener('change', handleImageSelect);
+            analyzeImageBtn.addEventListener('click', handleImageAnalysis);
+        }
+
+        function addSparkleAnimation() {
+            // Add random sparkles to the header
+            const header = document.querySelector('.header');
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.animationDelay = Math.random() * 2 + 's';
+                    header.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 2000);
+                }
+            }, 3000);
+        }
+
+        function handleStorySubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(storyForm);
+            userStory = Object.fromEntries(formData.entries());
+            
+            // Enhance the story data
+            userStory.story_analysis = analyzeStoryElements(userStory);
+            
+            submitStoryBasedRecommendation();
+        }
+
+        function analyzeStoryElements(story) {
+            const analysis = {
+                romantic_keywords: [],
+                style_indicators: [],
+                personality_traits: [],
+                recommended_styles: []
+            };
+
+            const text = (story.love_story + ' ' + story.personality + ' ' + story.style_preferences).toLowerCase();
+            
+            // Romantic keyword detection
+            if (text.includes('beach') || text.includes('ocean') || text.includes('sunset')) {
+                analysis.romantic_keywords.push('oceanic');
+                analysis.recommended_styles.push('flowing', 'organic');
+            }
+            if (text.includes('vintage') || text.includes('antique') || text.includes('classic')) {
+                analysis.romantic_keywords.push('vintage');
+                analysis.recommended_styles.push('art deco', 'vintage');
+            }
+            if (text.includes('nature') || text.includes('hiking') || text.includes('outdoors')) {
+                analysis.romantic_keywords.push('natural');
+                analysis.recommended_styles.push('organic', 'nature-inspired');
+            }
+            if (text.includes('art') || text.includes('creative') || text.includes('artistic')) {
+                analysis.romantic_keywords.push('artistic');
+                analysis.recommended_styles.push('unique', 'sculptural');
+            }
+
+            // Style indicators
+            if (text.includes('minimalist') || text.includes('clean') || text.includes('simple')) {
+                analysis.style_indicators.push('minimalist');
+            }
+            if (text.includes('bohemian') || text.includes('boho') || text.includes('free-spirited')) {
+                analysis.style_indicators.push('bohemian');
+            }
+            if (text.includes('elegant') || text.includes('sophisticated') || text.includes('refined')) {
+                analysis.style_indicators.push('elegant');
+            }
+
+            return analysis;
+        }
+
+        function handlePreferencesSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(preferencesForm);
+            const preferences = Object.fromEntries(formData.entries());
+            
+            submitPreferences(preferences);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            imageUpload.classList.add('dragover');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            imageUpload.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files);
+            handleMultipleImages(files);
+        }
+
+        function handleImageSelect(e) {
+            const files = Array.from(e.target.files);
+            handleMultipleImages(files);
+        }
+
+        function handleMultipleImages(files) {
+            const imageFiles = files.filter(file => file.type.startsWith('image/'));
+            
+            if (imageFiles.length === 0) {
+                showNotification('Please select valid image files', 'error');
+                return;
+            }
+
+            previewContainer.innerHTML = '';
+            
+            imageFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgContainer = document.createElement('div');
+                    imgContainer.style.cssText = 'display: inline-block; margin: 5px; position: relative;';
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.cssText = 'width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 2px solid var(--gold);';
+                    
+                    imgContainer.appendChild(img);
+                    previewContainer.appendChild(imgContainer);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            imagePreview.classList.remove('hidden');
+            analyzeImageBtn.classList.remove('hidden');
+        }
+
+        async function submitStoryBasedRecommendation() {
+            showLoading(true);
+
+            try {
+                // Combine story with any preferences
+                const formData = new FormData(preferencesForm);
+                const preferences = Object.fromEntries(formData.entries());
+                
+                const combinedData = {
+                    story: userStory,
+                    preferences: preferences,
+                    type: 'story_based'
+                };
+
+                const response = await fetch('/api/story-recommendations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(combinedData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    currentSessionId = data.session_id;
+                    displayStoryBasedSuggestions(data.suggestions, data.message, data.story_insights);
+                    showNotification('Your personalized collection is ready!');
+                } else {
+                    throw new Error(data.detail || 'Failed to generate story-based recommendations');
+                }
+            } catch (error) {
+                showNotification('Error creating your personalized collection: ' + error.message, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function submitPreferences(preferences) {
+            showLoading(true);
+
+            try {
+                const response = await fetch('/api/preferences', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(preferences)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    currentSessionId = data.session_id;
+                    displaySuggestions(data.suggestions, data.message);
+                    showNotification('Premium recommendations generated!');
+                } else {
+                    throw new Error(data.detail || 'Failed to generate recommendations');
+                }
+            } catch (error) {
+                showNotification('Error generating recommendations: ' + error.message, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function displayStoryBasedSuggestions(suggestions, message, storyInsights) {
+            let messageHtml = `
+                <div style="background: linear-gradient(135deg, rgba(26, 35, 126, 0.1), rgba(57, 73, 171, 0.1)); padding: 30px; border-radius: 20px; margin-bottom: 30px; border: 1px solid rgba(26, 35, 126, 0.2);">
+                    <h3 style="font-family: 'Playfair Display', serif; color: var(--deep-blue); margin-bottom: 15px;">
+                        <i class="fas fa-heart"></i> Your Love Story Inspiration
+                    </h3>
+                    <p style="font-size: 1.1rem; color: #555; line-height: 1.6; margin-bottom: 15px;">${message}</p>`;
+
+            if (storyInsights) {
+                messageHtml += `
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                        <div style="background: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: 10px;">
+                            <strong>Detected Themes:</strong><br>
+                            ${storyInsights.themes.join(', ')}
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: 10px;">
+                            <strong>Style Match:</strong><br>
+                            ${storyInsights.style_match}
+                        </div>
+                    </div>`;
+            }
+
+            messageHtml += '</div>';
+            suggestionsMessage.innerHTML = messageHtml;
+            
+            displaySuggestionsWithStory(suggestions);
+        }
+
+        function displaySuggestionsWithStory(suggestions) {
+            suggestionsGrid.innerHTML = suggestions.map(design => `
+                <div class="design-card fade-in">
+                    <div class="design-header">
+                        <span class="design-id">${design.id}</span>
+                        <span class="design-price">${design.estimated_price.toLocaleString()}</span>
+                    </div>
+                    
+                    ${design.story_connection ? `
+                        <div class="story-connection">
+                            <h4><i class="fas fa-heart"></i> Your Story Connection</h4>
+                            <p>${design.story_connection}</p>
+                        </div>
+                    ` : ''}
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <img src="data:image/svg+xml,${encodeURIComponent(generateDiamondSVG(design))}" 
+                                 alt="${design.stone_type} ${design.stone_shape}" 
+                                 style="width: 100%; height: 120px; object-fit: contain; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 10px; padding: 10px;">
+                        </div>
+                        <div class="design-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Stone:</span>
+                                <span class="detail-value">${design.stone_type}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Shape:</span>
+                                <span class="detail-value">${design.stone_shape}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Carat:</span>
+                                <span class="detail-value">${design.carat_weight}ct</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Metal:</span>
+                                <span class="detail-value">${design.metal_type.replace('_', ' ')}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="style-tags">
+                        ${design.style_tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <div style="background: rgba(250, 250, 250, 0.8); padding: 20px; border-radius: 15px; margin-bottom: 20px;">
+                        <h4 style="color: var(--deep-blue); margin-bottom: 10px; font-family: 'Playfair Display', serif;">
+                            <i class="fas fa-quote-left"></i> Why This Design
+                        </h4>
+                        <p style="color: #555; font-style: italic; line-height: 1.6;">${design.rationale}</p>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-shortlist" onclick="addToShortlist('${design.id}')" style="flex: 1;">
+                            <i class="fas fa-heart"></i>
+                            Save to Collection
+                        </button>
+                        <button class="btn" onclick="scheduleViewing('${design.id}')" 
+                                style="background: linear-gradient(135deg, var(--deep-blue), #3949ab); color: white; padding: 12px 20px;">
+                            <i class="fas fa-eye"></i>
+                            Private Viewing
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            suggestionsSection.classList.remove('hidden');
+            suggestionsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function displaySuggestions(suggestions, message) {
+            suggestionsMessage.innerHTML = `<p style="font-size: 1.2rem; color: #666; margin-bottom: 25px; text-align: center;"><i class="fas fa-sparkles"></i> ${message}</p>`;
+            
+            suggestionsGrid.innerHTML = suggestions.map(design => `
+                <div class="design-card fade-in">
+                    <div class="design-header">
+                        <span class="design-id">${design.id}</span>
+                        <span class="design-price">${design.estimated_price.toLocaleString()}</span>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <img src="data:image/svg+xml,${encodeURIComponent(generateDiamondSVG(design))}" 
+                                 alt="${design.stone_type} ${design.stone_shape}" 
+                                 style="width: 100%; height: 120px; object-fit: contain; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 10px; padding: 10px;">
+                        </div>
+                        <div class="design-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Stone:</span>
+                                <span class="detail-value">${design.stone_type} (${design.carat_weight}ct)</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Shape:</span>
+                                <span class="detail-value">${design.stone_shape}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Clarity:</span>
+                                <span class="detail-value">${design.stone_clarity}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Metal:</span>
+                                <span class="detail-value">${design.metal_type.replace('_', ' ')}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Setting:</span>
+                                <span class="detail-value">${design.setting_type}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="style-tags">
+                        ${design.style_tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <div style="background: rgba(250, 250, 250, 0.8); padding: 20px; border-radius: 15px; margin-bottom: 20px;">
+                        <p style="color: #555; font-style: italic; line-height: 1.6;">${design.rationale}</p>
+                    </div>
+                    
+                    <button class="btn btn-shortlist" onclick="addToShortlist('${design.id}')" style="width: 100%;">
+                        <i class="fas fa-heart"></i>
+                        Add to Personal Collection
+                    </button>
+                </div>
+            `).join('');
+
+            suggestionsSection.classList.remove('hidden');
+            suggestionsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateDiamondSVG(design) {
+            const shapes = {
+                round: `<circle cx="60" cy="60" r="35" fill="none" stroke="#d4af37" stroke-width="3"/>
+                        <circle cx="60" cy="60" r="25" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
+                        <circle cx="60" cy="60" r="15" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.4"/>`,
+                princess: `<rect x="25" y="25" width="70" height="70" fill="none" stroke="#d4af37" stroke-width="3"/>
+                          <rect x="35" y="35" width="50" height="50" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>`,
+                cushion: `<rect x="25" y="25" width="70" height="70" rx="15" ry="15" fill="none" stroke="#d4af37" stroke-width="3"/>
+                         <rect x="35" y="35" width="50" height="50" rx="10" ry="10" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>`,
+                oval: `<ellipse cx="60" cy="60" rx="35" ry="25" fill="none" stroke="#d4af37" stroke-width="3"/>
+                       <ellipse cx="60" cy="60" rx="25" ry="18" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>`,
+                emerald: `<rect x="20" y="30" width="80" height="60" fill="none" stroke="#d4af37" stroke-width="3"/>
+                         <rect x="30" y="40" width="60" height="40" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>`
+            };
+
+            const shape = shapes[design.stone_shape] || shapes.round;
+            
+            return `<svg width="120" height="120" viewBox="0 0 120 120">
+                      <defs>
+                        <radialGradient id="sparkle" cx="50%" cy="30%">
+                          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+                          <stop offset="100%" stop-color="#d4af37" stop-opacity="0.2"/>
+                        </radialGradient>
+                      </defs>
+                      ${shape}
+                      <circle cx="50" cy="40" r="3" fill="url(#sparkle)"/>
+                      <circle cx="70" cy="50" r="2" fill="url(#sparkle)"/>
+                      <circle cx="55" cy="65" r="1.5" fill="url(#sparkle)"/>
+                    </svg>`;
+        }
+
+        async function addToShortlist(designId) {
+            if (!currentSessionId) {
+                showNotification('No active session found', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/shortlist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        design_id: designId,
+                        user_session: currentSessionId
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showNotification('Added to your personal collection!');
+                } else {
+                    throw new Error(data.detail || 'Failed to add to collection');
+                }
+            } catch (error) {
+                showNotification('Error adding to collection: ' + error.message, 'error');
+            }
+        }
+
+        function scheduleViewing(designId) {
+            showNotification('Private viewing request sent! Our diamond specialist will contact you within 24 hours.');
+        }
+
+        function showLoading(show) {
+            if (show) {
+                loadingIndicator.classList.remove('hidden');
+            } else {
+                loadingIndicator.classList.add('hidden');
+            }
+        }
+
+        function showNotification(message, type = 'success') {
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // Handle image analysis
+        async function handleImageAnalysis() {
+            const files = imageInput.files;
+            if (!files.length) {
+                showNotification('Please select images first', 'error');
+                return;
+            }
+
+            showLoading(true);
+            
+            try {
+                const formData = new FormData();
+                Array.from(files).forEach(file => {
+                    formData.append('files', file);
+                });
+
+                const response = await fetch('/api/upload-images', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    currentSessionId = data.session_id;
+                    displaySuggestions(data.suggestions, data.message);
+                    showNotification('Visual inspiration analyzed successfully!');
+                } else {
+                    throw new Error(data.detail || 'Failed to analyze images');
+                }
+            } catch (error) {
+                showNotification('Error analyzing images: ' + error.message, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+    </script>
+</body>
+</html>
+<!-- Dazzlez  -->
